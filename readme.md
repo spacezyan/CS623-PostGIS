@@ -47,6 +47,12 @@ where (fclass='volcano' and name='Kīlauea');
 
 ### 2. Calculate Distance between accommodation to Kīlauea Volcano
 
+ST_Distance: [https://postgis.net/docs/ST_Distance.html](https://postgis.net/docs/ST_Distance.html)
+
+ST_GeographyFromText: [https://postgis.net/docs/ST_GeographyFromText.html](https://postgis.net/docs/ST_GeographyFromText.html)
+
+geom::geography: [https://www.postgis.net/workshops/postgis-intro/geography.html](https://www.postgis.net/workshops/postgis-intro/geography.html)
+
 ```sql
 select osm_id, name, fclass, st_distance (geom::geography,ST_GeographyFromText('POINT(-155.275811 19.4138647)')) as distance 
 from public.gis_osm_pois_free_1
