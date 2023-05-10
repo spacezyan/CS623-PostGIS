@@ -20,7 +20,8 @@ Creating a Geographic Information System (GIS) Analysis: A project that involves
 
 Install PostGIS -pg15
 
-Get geographic data from openstreetmap [https://download.geofabrik.de/](https://download.geofabrik.de/)
+Get geographic data from [openstreetmap] (https://download.geofabrik.de/)
+Get the [Format description PDF] (https://download.geofabrik.de/north-america/us/hawaii.html)
 
 ```java
 create database hawii;
