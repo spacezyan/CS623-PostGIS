@@ -49,7 +49,7 @@ from public.gis_osm_pois_free_1
 where fclass IN ('hotel', 'motel', 'bed_and_breakfast', 'guesthouse', 'hostel', 'chalet') AND name IS NOT NULL;
 ```
 
-![Untitled](Project%202%20Section%20A%20ba43de3d13054900b882b56b06b1dd01/Untitled%201.png)
+![Untitled](Project%202%20Section%20A%20ba43de3d13/Untitled%201.png)
 
 ### 3. Calculate Areas of Beachs
 
@@ -59,7 +59,7 @@ from public.gis_osm_natural_a_free_1
 where fclass='beach' AND name IS NOT NULL;
 ```
 
-![Untitled](Project%202%20Section%20A%20ba43de3d13054900b882b56b06b1dd01/Untitled%202.png)
+![Untitled](Project%202%20Section%20A%20ba43de3d13/Untitled%202.png)
 
 We want to find all beaches that are within 1 kilometer of any accommodation.
 
@@ -82,7 +82,7 @@ FROM nearby_beaches
 WHERE distance < 1000;
 ```
 
-![Untitled](Project%202%20Section%20A%20ba43de3d13054900b882b56b06b1dd01/Untitled%203.png)
+![Untitled](Project%202%20Section%20A%20ba43de3d13/Untitled%203.png)
 
 ### 4. Analyze the queries
 
@@ -104,7 +104,7 @@ ORDER BY distance ASC
 LIMIT 10;
 ```
 
-![Untitled](Project%202%20Section%20A%20ba43de3d13054900b882b56b06b1dd01/Untitled%204.png)
+![Untitled](Project%202%20Section%20A%20ba43de3d13/Untitled%204.png)
 
 ```sql
 WITH nearby_accommodations AS (
@@ -126,7 +126,7 @@ ORDER BY area DESC
 LIMIT 10;
 ```
 
-![Untitled](Project%202%20Section%20A%20ba43de3d13054900b882b56b06b1dd01/Untitled%205.png)
+![Untitled](Project%202%20Section%20A%20ba43de3d13/Untitled%205.png)
 
 Both of these queries will sort the entire result set, regardless of how large it might be, before applying the LIMIT clause. This could potentially be very slow if the tables contain a lot of data.
 
@@ -155,7 +155,7 @@ FROM (
 ) AS filtered_accommodations;
 ```
 
-![Untitled](Project%202%20Section%20A%20ba43de3d13054900b882b56b06b1dd01/Untitled%206.png)
+![Untitled](Project%202%20Section%20A%20ba43de3d13/Untitled%206.png)
 
 ```sql
 WITH nearby_accommodations AS (
@@ -177,7 +177,7 @@ ORDER BY area DESC
 LIMIT 10;
 ```
 
-![Untitled](Project%202%20Section%20A%20ba43de3d13054900b882b56b06b1dd01/Untitled%207.png)
+![Untitled](Project%202%20Section%20A%20ba43de3d13/Untitled%207.png)
 
 ### 7. N-Optimization of queries
 
@@ -196,7 +196,7 @@ ORDER BY distance ASC
 LIMIT 10;
 ```
 
-![Untitled](Project%202%20Section%20A%20ba43de3d13054900b882b56b06b1dd01/Untitled%208.png)
+![Untitled](Project%202%20Section%20A%20ba43de3d13/Untitled%208.png)
 
 This will return the 10 accommodations closest to the Kīlauea volcano.
 
@@ -220,6 +220,6 @@ ORDER BY area DESC
 LIMIT 10;
 ```
 
-![Untitled](Project%202%20Section%20A%20ba43de3d13054900b882b56b06b1dd01/Untitled%209.png)
+![Untitled](Project%202%20Section%20A%20ba43de3d13/Untitled%209.png)
 
 This will return the 10 largest beaches has accommodation within 1 kilometer.
