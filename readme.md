@@ -63,6 +63,8 @@ where fclass IN ('hotel', 'motel', 'bed_and_breakfast', 'guesthouse', 'hostel', 
 
 ### 3. Calculate Areas of Beachs
 
+ST_Area: https://postgis.net/docs/ST_Area.html
+
 ```sql
 select osm_id,name,st_area (geom) as area
 from public.gis_osm_natural_a_free_1
