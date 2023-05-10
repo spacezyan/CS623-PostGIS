@@ -33,6 +33,8 @@ Import .shp files to PostGIS
 
 ### 1. Retrieve Locations of Kīlauea Volcano
 
+ST_AsText: https://postgis.net/docs/ST_AsText.html
+
 ```sql
 select osm_id,name,st_astext (geom) as location
 from public.gis_osm_natural_free_1
