@@ -33,7 +33,7 @@ Import .shp files to PostGIS
 
 ### 1. Retrieve Locations of Kīlauea Volcano
 
-ST_AsText: https://postgis.net/docs/ST_AsText.html
+[ST_AsText](https://postgis.net/docs/ST_AsText.html)
 
 ```sql
 select osm_id,name,st_astext (geom) as location
@@ -47,11 +47,7 @@ where (fclass='volcano' and name='Kīlauea');
 
 ### 2. Calculate Distance between accommodation to Kīlauea Volcano
 
-ST_Distance: [https://postgis.net/docs/ST_Distance.html](https://postgis.net/docs/ST_Distance.html)
-
-ST_GeographyFromText: [https://postgis.net/docs/ST_GeographyFromText.html](https://postgis.net/docs/ST_GeographyFromText.html)
-
-geom::geography: [https://www.postgis.net/workshops/postgis-intro/geography.html](https://www.postgis.net/workshops/postgis-intro/geography.html)
+[ST_Distance](https://postgis.net/docs/ST_Distance.html), [ST_GeographyFromText](https://postgis.net/docs/ST_GeographyFromText.html), [geom::geography](https://www.postgis.net/workshops/postgis-intro/geography.html)
 
 ```sql
 select osm_id, name, fclass, st_distance (geom::geography,ST_GeographyFromText('POINT(-155.275811 19.4138647)')) as distance 
@@ -63,7 +59,7 @@ where fclass IN ('hotel', 'motel', 'bed_and_breakfast', 'guesthouse', 'hostel', 
 
 ### 3. Calculate Areas of Beachs
 
-ST_Area: https://postgis.net/docs/ST_Area.html
+[ST_Area](https://postgis.net/docs/ST_Area.html), [ST_DWithin](https://postgis.net/docs/ST_DWithin.html)
 
 ```sql
 select osm_id,name,st_area (geom) as area
