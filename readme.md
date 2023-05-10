@@ -37,7 +37,7 @@ from public.gis_osm_natural_free_1
 where (fclass='volcano' and name='Kīlauea');
 ```
 
-![Untitled](Project%202%20Section%20A%20ba43de3d13/Untitled.png)
+![Untitled](results/Untitled.png)
 
 2734299214, 'Kīlauea', ‘POINT(-155.275811 19.4138647)’
 
