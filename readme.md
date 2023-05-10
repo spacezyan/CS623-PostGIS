@@ -148,8 +148,6 @@ Both of these queries will sort the entire result set, regardless of how large i
 
 To find the 10 largest beaches that have an accommodation within 1 kilometer, we first retrieves the osm_id and geom of all accommodations from the public.gis_osm_pois_free_1 table. It then joins this with the beach data from the public.gis_osm_natural_a_free_1 table based on the geom within a certain distance (1 kilometer in this case) and calculates the distance from each beach to the nearest accommodation. Finally, it sorts the beaches by area in descending order and returns the osm_id, name, and area of the 10 largest beaches that are within 1 kilometer of an accommodation.
 
-With Top-N Optimization, on the other hand, the database would only need to keep track of the top N results as it scans through the table, reducing the memory usage and computational load.
-
 ### 6. Optimize the queries to speed up execution time
 
 To speed up the search process, we create an index on the fclass field. And run ANALYZE after creating indexes
@@ -197,7 +195,7 @@ LIMIT 10;
 
 ### 7. N-Optimization of queries
 
-Top-N Optimization, often simply called N-Optimization, is a query optimization strategy used in SQL when a user is only interested in a fixed number of rows of the result. The main goal of N-Optimization is to improve the performance of queries that use the LIMIT clause.
+Top-N Optimization, often simply called N-Optimization, is a query optimization strategy used in SQL when a user is only interested in a fixed number of rows of the result. The main goal of N-Optimization is to improve the performance of queries that use the LIMIT clause. With Top-N Optimization, the database would only need to keep track of the top N results as it scans through the table, reducing the memory usage and computational load.
 
 We can add a LIMIT clause to limit the number of results returned, and a ORDER BY clause to sort the results by distance. 
 
