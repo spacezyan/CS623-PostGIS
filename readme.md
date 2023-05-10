@@ -86,13 +86,29 @@ WHERE distance < 1000;
 
 ### 4. Analyze the queries
 
-The first query retrieves the point coordinates of the Kīlauea volcano. It does so by searching through the gis_osm_natural_free_1 table for a row where the name matches 'Kīlauea' and the fclass matches ‘volcano’. The returned result is the osm_id, the name, and the geographic point of the location.
+These SQL queries are aimed to analyze geographical data of Hawaii, specifically volcanoes, beaches, and nearby accommodations.
 
-The second query calculates the distance between various types of accommodations and the Kīlauea volcano. It searches through the gis_osm_pois_free_1 table for rows where the fclass is one of the following: 'hotel', 'motel', 'bed_and_breakfast', 'guesthouse', 'hostel', or 'chalet'. The returned result is the osm_id, the name, the fclass, and the calculated distance.
+The first query is identical, they are trying to retrieve the OpenStreetMap id (osm_id), name, and the geometric location (geom) of the Kīlauea volcano from the gis_osm_natural_free_1 table in the public schema.
 
-The third query retrieves the osm_id, name, and area of all rows in the gis_osm_natural_a_free_1 table where the fclass is 'beach' and the name is not null. 
+The second query aims to find accommodations (hotels, motels, bed and breakfasts, guesthouses, hostels, chalets) around a specific geographical point, (-155.275811 19.4138647). 
 
-The forth query first retrieves the osm_id and geom of all accommodations from the public.gis_osm_pois_free_1 table. It then joins this with the beach data from the public.gis_osm_natural_a_free_1 table based on the geom within a certain distance (1 kilometer in this case) and calculates the distance from each beach to the nearest accommodation. Finally, it returns the osm_id, name, and area of all beaches that are within 1 kilometer of an accommodation.
+osm_id, name, and fclass are selected from the public.gis_osm_pois_free_1 table. osm_id is the OpenStreetMap identifier, name is the name of the point of interest, and fclass is the classification of the feature (hotel, motel, etc.). 
+
+It calculates the distance of each accommodation from a specific point defined by the coordinates (-155.275811 19.4138647). The ST_GeographyFromText function is used to create a geographic point from the provided coordinates, and ST_Distance calculates the distance from each accommodation to this point.
+
+It filters out accommodations based on their fclass and ensures the name is not null.
+
+The result will be a list of accommodations with their OpenStreetMap IDs, names, classification (fclass), and the distance to the specified geographical point. This could be useful for someone who's planning to stay near a specific location and wants to know how far the accommodations are from it.
+
+The third query fetches the osm_id, name, and the area of all beaches from the gis_osm_natural_a_free_1 table in the public schema. Note that only beaches with a non-null name are considered.
+
+The last query is a bit more complex as it uses a common table expression (CTE) to derive results from subqueries.
+
+The first subquery, nearby_accommodations, fetches osm_id and geom of accommodations like hotels, motels, bed and breakfasts, guesthouses, hostels, and chalets that have a non-null name from the gis_osm_pois_free_1 table.
+
+The second subquery, nearby_beaches, fetches unique (DISTINCT ON) beaches that are within 1000 meters of the accommodations from the previous subquery. For each beach, it fetches osm_id, name, area, and its distance to the nearest accommodation.
+
+The final SELECT statement fetches osm_id, name, and area of all beaches that are less than 1000 meters away from the nearest accommodation.
 
 ### 5. Sorting and Limit Executions
 
