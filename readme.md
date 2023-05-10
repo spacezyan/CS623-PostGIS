@@ -29,9 +29,6 @@ create extension postgis;
 
 Import .shp files to PostGIS
 
----
-
-
 ### 1. Retrieve Locations of Kīlauea Volcano
 
 ```sql
